@@ -5,11 +5,11 @@ import NavBar from 'react-bootstrap/Navbar';
 
 export default function NavBarComponent() {
   return (
-    <NavBar collapseOnSelect bg="dark" expand="lg" variant="dark">
-      <Container>
-        <NavBar.Brand href="#home">MitraSoft</NavBar.Brand>
+    <NavBar collapseOnSelect bg="dark" expand="sm" variant="dark">
+      <Container fluid="md">
+        <NavBar.Brand>MitraSoft</NavBar.Brand>
         <NavBar.Toggle aria-controls="basic-navbar-nav" />
-        <NavBar.Collapse id="basic-navbar-nav">
+        <NavBar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
             <LinkContainer to="/">
               <Nav.Link>Posts</Nav.Link>
