@@ -55,13 +55,27 @@ export default function About() {
                 fontSize: '1.4em',
               }}
             >
-              <Badge bg="success">HTML</Badge>
-              <Badge bg="success">CSS</Badge>
-              <Badge bg="success">JavaScript</Badge>
-              <Badge bg="success">React</Badge>
-              <Badge bg="success">React-Bootstrap</Badge>
-              <Badge bg="success">TypeScript</Badge>
-              <Badge bg="success">Redux</Badge>
+              <Badge className="m-1" bg="success">
+                HTML
+              </Badge>
+              <Badge className="m-1" bg="success">
+                CSS
+              </Badge>
+              <Badge className="m-1" bg="success">
+                JavaScript
+              </Badge>
+              <Badge className="m-1" bg="success">
+                React
+              </Badge>
+              <Badge className="m-1" bg="success">
+                React-Bootstrap
+              </Badge>
+              <Badge className="m-1" bg="success">
+                TypeScript
+              </Badge>
+              <Badge className="m-1" bg="success">
+                Redux
+              </Badge>
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="1">
