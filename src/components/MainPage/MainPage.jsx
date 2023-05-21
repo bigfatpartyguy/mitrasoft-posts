@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
+import Stack from 'react-bootstrap/Stack';
 import Post from '../Post';
 
 export default function MainPage() {
@@ -42,8 +43,9 @@ export default function MainPage() {
   return (
     <Container fluid="md">
       <h1>All Posts</h1>
-      {posts
-        ? posts.map((post) => (
+      {posts ? (
+        <Stack gap={3}>
+          {posts.map((post) => (
             <Post
               postId={post.id}
               userId={post.userId}
@@ -53,8 +55,9 @@ export default function MainPage() {
               onCommentsClick={loadComments}
               comments={comments.postId === post.id ? comments : null}
             />
-          ))
-        : null}
+          ))}
+        </Stack>
+      ) : null}
     </Container>
   );
 }

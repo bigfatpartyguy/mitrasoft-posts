@@ -1,10 +1,17 @@
-import Container from 'react-bootstrap/Container';
+import {LinkContainer} from 'react-router-bootstrap';
 import Image from 'react-bootstrap/Image';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Comments from '../Comments';
 import avatar from '../../assets/images/avatar.jpg';
-export default function Post({title, text, postId, onCommentsClick, comments}) {
+export default function Post({
+  title,
+  text,
+  postId,
+  userId,
+  onCommentsClick,
+  comments,
+}) {
   const handleCommentsClick = () => {
     if (!postId) return;
     onCommentsClick(postId);
@@ -12,12 +19,19 @@ export default function Post({title, text, postId, onCommentsClick, comments}) {
   return (
     <Card>
       <Card.Body>
-        <Image
-          src={avatar}
-          thumbnail={true}
-          roundedCircle={true}
-          width="70px"
-        />
+        <LinkContainer
+          to={`/users/${userId}`}
+          style={{
+            cursor: 'pointer',
+          }}
+        >
+          <Image
+            src={avatar}
+            thumbnail={true}
+            roundedCircle={true}
+            width="70px"
+          />
+        </LinkContainer>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{text}</Card.Text>
         <Card.Footer>
