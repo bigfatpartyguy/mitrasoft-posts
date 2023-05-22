@@ -3,6 +3,7 @@ import {
   POST_COMMENTS_SUCCESS,
   POST_COMMENTS_FAILED,
   FETCH_POST_COMMENTS,
+  RESET_POST_COMMENTS,
 } from './actionTypes';
 
 export const requestPostComments = () => ({
@@ -17,6 +18,10 @@ export const postCommentsSuccess = (data) => ({
 export const postCommentsFailed = (error) => ({
   type: POST_COMMENTS_FAILED,
   payload: error,
+});
+
+export const resetPostComments = () => ({
+  type: RESET_POST_COMMENTS,
 });
 
 export const fetchPostComments = (postId) => ({

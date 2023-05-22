@@ -5,34 +5,15 @@ import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Post from '../Post';
 import {fetchAllPosts} from '../../features/posts/actionCreators';
-import {fetchPostComments} from '../../features/comments';
+import {fetchPostComments, resetPostComments} from '../../features/comments';
 
-function MainPage(props) {
-  const {posts, dispatch} = props;
-  console.log(props);
-  const [comments, setComments] = useState({
-    postId: null,
-    data: null,
-  });
-
+function MainPage({posts, comments, dispatch}) {
   const loadComments = (postId) => {
-    dispatch(fetchPostComments(postId));
     if (comments.postId === postId) {
-      setComments({
-        postId: null,
-        data: null,
-      });
+      dispatch(resetPostComments());
       return;
     }
-    axios
-      .get(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
-      .then((response) => {
-        console.log(response);
-        setComments({
-          postId,
-          data: response.data,
-        });
-      });
+    dispatch(fetchPostComments(postId));
   };
 
   useEffect(() => {
@@ -62,10 +43,11 @@ function MainPage(props) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  state,
+  posts: state.posts,
+  comments: state.comments,
   ...ownProps,
 });
 
-const ConnectedMainPage = connect((state) => state)(MainPage);
+const ConnectedMainPage = connect(mapStateToProps)(MainPage);
 
 export default ConnectedMainPage;
