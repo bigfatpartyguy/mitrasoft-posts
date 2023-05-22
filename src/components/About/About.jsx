@@ -11,8 +11,9 @@ export default function About() {
   return (
     <Container
       fluid="md"
+      className="pt-4"
       style={{
-        paddingTop: '25px',
+        maxWidth: '960px',
       }}
     >
       <Row
