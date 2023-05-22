@@ -36,7 +36,7 @@ function UserDetails({posts, comments, user, dispatch}) {
   }, [userId, dispatch]);
   return (
     <Container fluid="md" className="pt-4">
-      <LinkContainer to="/">
+      <LinkContainer to="/mitrasoft-posts/">
         <Button variant="secondary">Back to main page</Button>
       </LinkContainer>
 
