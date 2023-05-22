@@ -6,8 +6,9 @@ import {
   RESET_POST_COMMENTS,
 } from './actionTypes';
 
-export const requestPostComments = () => ({
+export const requestPostComments = (postId) => ({
   type: REQUEST_POST_COMMENTS,
+  payload: postId,
 });
 
 export const postCommentsSuccess = (data) => ({

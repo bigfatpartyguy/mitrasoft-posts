@@ -5,11 +5,9 @@ import {FETCH_POSTS} from './actionTypes';
 import {asyncDelay} from '../helpers';
 
 function* fetchPostsAsync({payload: userId}) {
-  console.log(userId);
   const url = `https://jsonplaceholder.typicode.com/${
     userId ? `users/${userId}/posts` : 'posts'
   }`;
-  console.log(url);
   try {
     yield put(requestPosts());
     yield asyncDelay(500);

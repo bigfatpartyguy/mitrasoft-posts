@@ -10,7 +10,7 @@ import {asyncDelay} from '../helpers';
 
 function* fetchPostCommentsAsync({payload: {postId}}) {
   try {
-    yield put(requestPostComments());
+    yield put(requestPostComments(postId));
     yield asyncDelay(500);
     const data = yield call(() =>
       axios
