@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/mitrasoft-posts/static/css/main.d476cfd1.css",
-    "main.js": "/mitrasoft-posts/static/js/main.8de5598f.js",
+    "main.js": "/mitrasoft-posts/static/js/main.feab536d.js",
     "static/media/profile-photo.jpg": "/mitrasoft-posts/static/media/profile-photo.8a81f74b6b3f8ab48274.jpg",
     "static/media/avatar.jpg": "/mitrasoft-posts/static/media/avatar.068bd99b01a67d6c145f.jpg",
     "index.html": "/mitrasoft-posts/index.html",
     "main.d476cfd1.css.map": "/mitrasoft-posts/static/css/main.d476cfd1.css.map",
-    "main.8de5598f.js.map": "/mitrasoft-posts/static/js/main.8de5598f.js.map"
+    "main.feab536d.js.map": "/mitrasoft-posts/static/js/main.feab536d.js.map"
   },
   "entrypoints": [
     "static/css/main.d476cfd1.css",
-    "static/js/main.8de5598f.js"
+    "static/js/main.feab536d.js"
   ]
 }
