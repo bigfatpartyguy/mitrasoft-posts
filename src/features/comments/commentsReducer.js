@@ -1,7 +1,7 @@
 import {
-  REQUEST_ALL_POSTS,
-  ALL_POSTS_SUCCESS,
-  ALL_POSTS_FAILED,
+  REQUEST_POST_COMMENTS,
+  POST_COMMENTS_SUCCESS,
+  POST_COMMENTS_FAILED,
 } from './actionTypes';
 
 const initialState = {
@@ -12,19 +12,19 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST_ALL_POSTS:
+    case REQUEST_POST_COMMENTS:
       return {
         status: 'loading',
         data: null,
         error: null,
       };
-    case ALL_POSTS_SUCCESS:
+    case POST_COMMENTS_SUCCESS:
       return {
         status: 'success',
         data: action.payload,
         error: null,
       };
-    case ALL_POSTS_FAILED:
+    case POST_COMMENTS_FAILED:
       return {
         status: 'error',
         data: null,

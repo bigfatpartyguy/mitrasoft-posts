@@ -6,11 +6,14 @@ import {
 } from 'redux';
 import {Provider} from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import {postsReducer} from './posts';
+import posts from './posts';
+import comments from './comments';
+import rootSaga from './rootSaga';
 import withProvider from './withProvider';
 
 const rootReducer = combineReducers({
-  postsReducer,
+  posts,
+  comments,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -21,6 +24,8 @@ export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
+
+sagaMiddleware.run(rootSaga);
 
 // sagaMiddleware.run();
 
