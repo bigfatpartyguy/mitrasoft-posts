@@ -25,7 +25,7 @@ function* fetchPostCommentsAsync({payload: {postId}}) {
     );
     yield put(postCommentsSuccess({data, postId}));
   } catch (error) {
-    yield put(postCommentsFailed(error));
+    yield put(postCommentsFailed({error, postId}));
   }
 }
 

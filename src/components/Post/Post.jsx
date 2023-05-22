@@ -3,9 +3,8 @@ import Image from 'react-bootstrap/Image';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Comments from '../Comments';
+import ErrorMessage from '../ErrorMessage';
 import avatar from '../../assets/images/avatar.jpg';
 export default function Post({
   title,
@@ -15,6 +14,10 @@ export default function Post({
   onCommentsClick,
   comments,
 }) {
+  const isComments = comments?.status === 'success';
+  const isLoading = comments?.status === 'loading';
+  const commentsErrorMessage =
+    comments?.status === 'error' && comments.error.message;
   const handleCommentsClick = () => {
     if (!postId) return;
     onCommentsClick(postId);
@@ -40,16 +43,16 @@ export default function Post({
         <Card.Footer>
           <div className="d-flex justify-content-end">
             <Button variant="dark" onClick={handleCommentsClick}>
-              {comments && comments.status === 'success'
-                ? 'Hide comments'
-                : 'Show comments'}
-              {comments && comments.status === 'loading' ? (
+              {isComments ? 'Hide comments' : 'Show comments'}
+              {isLoading ? (
                 <Spinner animation="grow" size="sm" className="ms-1" />
               ) : null}
             </Button>
           </div>
-          {comments && comments.status === 'success' ? (
+          {isComments ? (
             <Comments comments={comments.data} />
+          ) : commentsErrorMessage ? (
+            <ErrorMessage errorMessage={commentsErrorMessage} />
           ) : null}
         </Card.Footer>
       </Card.Body>

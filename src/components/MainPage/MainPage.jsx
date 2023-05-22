@@ -4,12 +4,15 @@ import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Spinner from 'react-bootstrap/Spinner';
 import Post from '../Post';
+import Alert from 'react-bootstrap/Alert';
+import ErrorMessage from '../ErrorMessage';
 import {fetchPosts} from '../../features/posts';
 import {fetchPostComments, resetPostComments} from '../../features/comments';
 
 function MainPage({posts, comments, dispatch}) {
   const isPostsLoading = posts.status === 'loading';
-  const isPosts = posts?.status === 'success' && posts?.data;
+  const isPosts = posts?.status === 'success' && posts.data;
+  const errorMessage = posts?.status === 'error' && posts.error.message;
   const loadComments = (postId) => {
     if (comments.postId === postId) {
       dispatch(resetPostComments());
@@ -49,7 +52,9 @@ function MainPage({posts, comments, dispatch}) {
               />
             ))}
           </Stack>
-        ) : null}
+        ) : (
+          <ErrorMessage errorMessage={errorMessage} />
+        )}
       </Container>
     </Container>
   );

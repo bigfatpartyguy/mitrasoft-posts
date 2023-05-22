@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import Post from '../Post';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import {fetchPosts} from '../../features/posts';
 import {fetchUser} from '../../features/user';
 import {fetchPostComments, resetPostComments} from '../../features/comments';
@@ -16,8 +17,8 @@ import {fetchPostComments, resetPostComments} from '../../features/comments';
 function UserDetails({posts, comments, user, dispatch}) {
   const isUserLoading = user?.status === 'loading';
   const isUser = user?.status === 'success' && user.data;
-  const isPostsLoading = posts?.status === 'loading';
   const isPosts = posts?.status === 'success' && posts.data;
+  const userErrorMessage = user?.status === 'error' && user.error.message;
   const {userId} = useParams();
 
   const loadComments = (postId) => {
@@ -85,7 +86,9 @@ function UserDetails({posts, comments, user, dispatch}) {
               </Spinner>
             )}
           </Stack>
-        ) : null}
+        ) : (
+          <ErrorMessage errorMessage={userErrorMessage} />
+        )}
       </Container>
     </Container>
   );

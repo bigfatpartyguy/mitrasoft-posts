@@ -16,9 +16,9 @@ export const postCommentsSuccess = (data) => ({
   payload: data,
 });
 
-export const postCommentsFailed = (error) => ({
+export const postCommentsFailed = (errorData) => ({
   type: POST_COMMENTS_FAILED,
-  payload: error,
+  payload: errorData,
 });
 
 export const resetPostComments = () => ({

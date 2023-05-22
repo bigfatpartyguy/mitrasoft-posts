@@ -30,13 +30,15 @@ export default (state = initialState, action) => {
         error: null,
       };
     }
-    case POST_COMMENTS_FAILED:
+    case POST_COMMENTS_FAILED: {
+      const {error, postId} = action.payload;
       return {
         status: 'error',
-        postId: null,
+        postId: postId,
         data: null,
-        error: action.payload,
+        error: error,
       };
+    }
     case RESET_POST_COMMENTS:
       return initialState;
     default:
