@@ -1,36 +1,36 @@
 import {takeEvery, put, call} from 'redux-saga/effects';
 import axios from 'axios';
-import {
-  requestAllPosts,
-  allPostsSuccess,
-  allPostsFailed,
-} from './actionCreators';
-import {FETCH_ALL_POSTS} from './actionTypes';
+import {requestPosts, postsSuccess, postsFailed} from './actionCreators';
+import {FETCH_POSTS} from './actionTypes';
 import {asyncDelay} from '../helpers';
 
-function* fetchAllPostsAsync() {
+function* fetchPostsAsync({payload: userId}) {
+  console.log(userId);
+  const url = `https://jsonplaceholder.typicode.com/${
+    userId ? `users/${userId}/posts` : 'posts'
+  }`;
+  console.log(url);
   try {
-    yield put(requestAllPosts());
+    yield put(requestPosts());
     yield asyncDelay(500);
     const data = yield call(() =>
       axios
-        .get('https://jsonplaceholder.typicode.com/posts')
+        .get(url)
         .then((response) => {
-          console.log(response);
           return response.data;
         })
         .catch((error) => {
           throw new Error(error);
         })
     );
-    yield put(allPostsSuccess(data));
+    yield put(postsSuccess(data));
   } catch (error) {
-    yield put(allPostsFailed(error));
+    yield put(postsFailed(error));
   }
 }
 
-function* watchFetchAllPostsAsync() {
-  yield takeEvery(FETCH_ALL_POSTS, fetchAllPostsAsync);
+function* watchFetchPostsAsync() {
+  yield takeEvery(FETCH_POSTS, fetchPostsAsync);
 }
 
-export {watchFetchAllPostsAsync};
+export {watchFetchPostsAsync};

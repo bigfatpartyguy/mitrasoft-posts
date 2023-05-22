@@ -4,7 +4,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Post from '../Post';
-import {fetchAllPosts} from '../../features/posts/actionCreators';
+import {fetchPosts} from '../../features/posts';
 import {fetchPostComments, resetPostComments} from '../../features/comments';
 
 function MainPage({posts, comments, dispatch}) {
@@ -17,7 +17,7 @@ function MainPage({posts, comments, dispatch}) {
   };
 
   useEffect(() => {
-    dispatch(fetchAllPosts());
+    dispatch(fetchPosts());
   }, [dispatch]);
 
   return (

@@ -1,4 +1,4 @@
-import {REQUEST_POSTS, POSTS_SUCCESS, POSTS_FAILED} from './actionTypes';
+import {REQUEST_USER, USER_SUCCESS, USER_FAILED} from './actionTypes';
 
 const initialState = {
   status: 'idle',
@@ -8,19 +8,19 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST_POSTS:
+    case REQUEST_USER:
       return {
         status: 'loading',
         data: null,
         error: null,
       };
-    case POSTS_SUCCESS:
+    case USER_SUCCESS:
       return {
         status: 'success',
         data: action.payload,
         error: null,
       };
-    case POSTS_FAILED:
+    case USER_FAILED:
       return {
         status: 'error',
         data: null,

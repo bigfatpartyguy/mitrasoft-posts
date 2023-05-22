@@ -1,3 +1,4 @@
+import {connect} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import Container from 'react-bootstrap/Container';
@@ -6,54 +7,55 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner';
 import Post from '../Post';
-import axios from 'axios';
+import {fetchPosts} from '../../features/posts';
+import {fetchUser} from '../../features/user';
+import {fetchPostComments, resetPostComments} from '../../features/comments';
 
-export default function UserDetails() {
-  const [user, setUser] = useState(null);
-  const [posts, setPosts] = useState(null);
+function UserDetails({posts, comments, user, dispatch}) {
   const {userId} = useParams();
+
+  const loadComments = (postId) => {
+    if (comments.postId === postId) {
+      dispatch(resetPostComments());
+      return;
+    }
+    dispatch(fetchPostComments(postId));
+  };
+
   useEffect(() => {
     if (!userId) return;
-    setTimeout(() => {
-      axios
-        .get(`https://jsonplaceholder.typicode.com/users/${userId}`)
-        .then((response) => {
-          setUser(response.data);
-        });
-      axios
-        .get(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
-        .then((response) => {
-          setPosts(response.data);
-        });
-    }, 500);
-  }, [userId]);
+    dispatch(fetchUser(userId));
+    dispatch(fetchPosts(userId));
+  }, [userId, dispatch]);
   return (
     <Container fluid="md">
-      {user ? (
+      {user.status === 'success' ? (
         <Stack gap={3} className="d-flex align-items-center">
-          <h2>{user.name}</h2>
-          <p className="fw-bold">@{user.username}</p>
+          <h2>{user.data.name}</h2>
+          <p className="fw-bold">@{user.data.username}</p>
           <Row>
             <Col xs={12} sm={6} className="d-flex">
               <p className="flex-shrink-0">
-                website: <span>{user.website}</span>
+                website: <span>{user.data.website}</span>
               </p>
             </Col>
             <Col xs={12} sm={6} className="d-flex">
               <p className="flex-shrink-0">
-                email: <span>{user.email}</span>
+                email: <span>{user.data.email}</span>
               </p>
             </Col>
           </Row>
-          {posts ? (
+          {posts.status === 'success' ? (
             <Stack gap={3}>
-              {posts.map((post) => (
+              {posts.data?.map((post) => (
                 <Post
                   postId={post.id}
                   userId={post.userId}
                   key={post.id}
                   title={post.title}
                   text={post.body}
+                  onCommentsClick={loadComments}
+                  comments={comments.postId === post.id ? comments : null}
                 />
               ))}
             </Stack>
@@ -71,3 +73,13 @@ export default function UserDetails() {
     </Container>
   );
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  posts: state.posts,
+  comments: state.comments,
+  user: state.user,
+  ...ownProps,
+});
+
+const WrapperUserDetails = connect(mapStateToProps)(UserDetails);
+export default WrapperUserDetails;

@@ -1,3 +1,3 @@
 export {default} from './postsReducer';
-export {fetchAllPosts} from './actionCreators';
-export {watchFetchAllPostsAsync} from './saga';
+export {fetchPosts} from './actionCreators';
+export {watchFetchPostsAsync} from './saga';

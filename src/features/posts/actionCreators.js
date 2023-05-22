@@ -1,24 +1,25 @@
 import {
-  REQUEST_ALL_POSTS,
-  ALL_POSTS_SUCCESS,
-  ALL_POSTS_FAILED,
-  FETCH_ALL_POSTS,
+  REQUEST_POSTS,
+  POSTS_SUCCESS,
+  POSTS_FAILED,
+  FETCH_POSTS,
 } from './actionTypes';
 
-export const requestAllPosts = () => ({
-  type: REQUEST_ALL_POSTS,
+export const requestPosts = () => ({
+  type: REQUEST_POSTS,
 });
 
-export const allPostsSuccess = (data) => ({
-  type: ALL_POSTS_SUCCESS,
+export const postsSuccess = (data) => ({
+  type: POSTS_SUCCESS,
   payload: data,
 });
 
-export const allPostsFailed = (error) => ({
-  type: ALL_POSTS_FAILED,
+export const postsFailed = (error) => ({
+  type: POSTS_FAILED,
   payload: error,
 });
 
-export const fetchAllPosts = () => ({
-  type: FETCH_ALL_POSTS,
+export const fetchPosts = (userId) => ({
+  type: FETCH_POSTS,
+  payload: userId,
 });

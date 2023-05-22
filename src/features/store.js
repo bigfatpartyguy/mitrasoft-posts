@@ -8,12 +8,14 @@ import {Provider} from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import posts from './posts';
 import comments from './comments';
+import user from './user';
 import rootSaga from './rootSaga';
 import withProvider from './withProvider';
 
 const rootReducer = combineReducers({
   posts,
   comments,
+  user,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
