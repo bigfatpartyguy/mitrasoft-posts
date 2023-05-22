@@ -10,9 +10,12 @@ function App() {
       <NavBarComponent />
 
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/users/:userId" element={<UserDetails />} />
+        <Route path="/mitrasoft-posts/" element={<MainPage />} />
+        <Route path="/mitrasoft-posts/about" element={<About />} />
+        <Route
+          path="/mitrasoft-posts/users/:userId"
+          element={<UserDetails />}
+        />
       </Routes>
     </Router>
   );

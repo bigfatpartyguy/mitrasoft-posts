@@ -26,7 +26,7 @@ export default function Post({
     <Card>
       <Card.Body>
         <LinkContainer
-          to={`/users/${userId}`}
+          to={`/mitrasoft-posts/users/${userId}`}
           style={{
             cursor: 'pointer',
           }}

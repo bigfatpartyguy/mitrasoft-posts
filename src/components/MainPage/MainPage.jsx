@@ -1,10 +1,9 @@
 import {connect} from 'react-redux';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Spinner from 'react-bootstrap/Spinner';
 import Post from '../Post';
-import Alert from 'react-bootstrap/Alert';
 import ErrorMessage from '../ErrorMessage';
 import {fetchPosts} from '../../features/posts';
 import {fetchPostComments, resetPostComments} from '../../features/comments';

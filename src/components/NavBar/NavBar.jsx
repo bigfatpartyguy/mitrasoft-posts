@@ -11,10 +11,10 @@ export default function NavBarComponent() {
         <NavBar.Toggle aria-controls="basic-navbar-nav" />
         <NavBar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
-            <LinkContainer to="/">
+            <LinkContainer to="/mitrasoft-posts/">
               <Nav.Link>Posts</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/about">
+            <LinkContainer to="/mitrasoft-posts/about">
               <Nav.Link>About</Nav.Link>
             </LinkContainer>
           </Nav>
